@@ -7,7 +7,7 @@ Quando for declarar um drawer, a chamada do bloco principal será a referência 
 
 Exemplo da declaração do bloco:
 > 💡 Isso Também um exemplo de como fazer um filtro lateral na página de busca/catalogo/categoria
-```
+```json
 {
 
     "drawer#filter": {

@@ -1,5 +1,23 @@
 # Java Data Types
 
+## Primitive Data Types
+There are 8 types of primitive data types:
+- boolean data type
+- byte data type
+- char data type
+- short data type
+- int data type
+- long data type
+- float data type
+- double data type
+
+## Non-Primitive Data Types
+Non-primitive data types are called reference types because they refer to objects. Non-primitive data types are created by the programmer and is not defined by Java (except for String). Non-primitive types include:
+- Classes (ex. String, System, Math, etc)
+- Interfaces
+- Arrays
+- String (It's equals to an array of chars)
+
 ## Integer data types
 | Data Type | Size (bytes)  | Range         |
 |-----------|---------------|---------------|
@@ -58,6 +76,7 @@ System.out.printf("Char example: %c\n", charExample); // Char example: A
 
 ```
 > The char data type is used to store any character. For example: letters, digits, and special symbols. To specify a char you should use a single quote notation; for example: 'a', '1', or '$'.
+
 
 
 More informations in [official java documentation](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html).

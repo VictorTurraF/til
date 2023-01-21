@@ -125,9 +125,9 @@ If you try to compile this code, you'll get an error, because we're not handling
 java: unreported exception InsufficientFoundsException; must be caught or declared to be thrown
 ```
 
-I'm using Intellij IDEA, the IDE shows the error in the line where the exception is thrown. If you're using another IDE, you may need to check the line where the exception is thrown.
+I'm using Intellij IDEA, the IDE shows the error in the line where the exception is thrown.
 
-
+![Captura de tela de 2023-01-21 15-16-04](https://user-images.githubusercontent.com/59932737/213881405-3e84f70c-ac5e-4f82-b96c-d116aa3268a5.png)
 
 Lets change the method signature to handle the exception. We need to add the `throws` keyword, and the name of the exception we want to handle.
 
@@ -139,7 +139,7 @@ public void withdraw(Integer amountInCents) throws InsufficientFoundsException {
 
 Still, if you try to compile the code, you'll get an error, because we're not handling the exception in the method main of our application.
 
-
+![image](https://user-images.githubusercontent.com/59932737/213881460-52c0567c-d554-4cd9-9525-d7380af5ca53.png)
 
 
 ```java

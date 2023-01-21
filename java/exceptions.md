@@ -41,4 +41,109 @@ These are the exceptions that are checked at compile time. If some code within a
 ##### Unchecked Exceptions
 These are the exceptions that are not checked at compile time. In C++, all exceptions are unchecked, so it is not forced by the compiler to either handle or specify the exception. It is up to the programmers to be civilized, and specify or catch the exceptions. In Java, exceptions under Error and RuntimeException classes are unchecked exceptions, everything else under throwable is checked.
 
+## Examples
+
+Creating a custom unchecked exception
+
+Lets suppose we're working on a checking account app, and we want to create a custom exception to be thrown when a user tries to withdraw more money than he has in his account.
+
+
+```java
+public class InsufficientFoundsException extends RuntimeException {
+
+    public InsufficientFoundsException( Currency balance, Currency amountInCents ) {
+        super("\nYou have not enough founds. \nYour balance is " + balance + " and you tried to withdraw " + amountInCents);
+    }
+
+}
+```
+
+Your class should extend RuntimeException, and you can add a custom message to the exception.
+
+Now, lets suppose we have a method that withdraws money from the account, and we want to throw the exception if the user tries to withdraw more money than he has in his account.
+
+```java
+public class CheckingAccount {
+
+    /* ... class definitions ... */
+
+    public void withdraw(Integer amountInCents) {
+        if (this.balance.getAmountInCents() < amountInCents)
+            throw new InsufficientFoundsException(this.balance, new Currency(amountInCents));
+
+        this.balance.subtractCents(amountInCents);
+    }
+
+}
+```
+
+Now, if we try to withdraw more money than we have in our account, we'll get the exception we created.
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        CheckingAccount checkingAccount = new CheckingAccount();
+
+        checkingAccount.deposit(10000);
+
+        checkingAccount.withdraw(10004);
+
+        System.out.println("Your balance is: " + checkingAccount.balance);
+    }
+}
+```
+
+Output:
+
+```
+Exception in thread "main" InsufficientFoundsException: 
+You have not enough founds. 
+Your balance is R$ 100,00 and you tried to withdraw R$ 100,04
+	at CheckingAccount.withdraw(CheckingAccount.java:14)
+	at Main.main(Main.java:7)
+
+Process finished with exit code 1
+```
+
+As you can see in the output, we have the custom message we created in the exception. In this case this is a unchecked exception, so we don't need neighter to declare it in the method signature or surround it with a try/catch block.
+
+This is a hipothetical example, in a real usage of a checking account, we would probably want to create a checked exception, so we could handle it in a try/catch block, and not let the program crash. What about to create a custom checked exception? Lets see how to do it.
+
+First lest change our exception to extend `Exception` instead of `RuntimeException`.
+
+```java
+
+public class InsufficientFoundsException extends Exception {
+    /* ... here stays the same code ... */
+}
+```
+
+If you try to compile this code, you'll get an error, because we're not handling the exception in the method signature. You can see that the compiler is forcing us to handle the exception. It shows the name of the exception we have created and the line in the code.
+
+```
+/home/victorturra/Documentos/learning/java-exceptions/src/CheckingAccount.java:14:13
+java: unreported exception InsufficientFoundsException; must be caught or declared to be thrown
+```
+
+I'm using Intellij IDEA, the IDE shows the error in the line where the exception is thrown. If you're using another IDE, you may need to check the line where the exception is thrown.
+
+
+
+Lets change the method signature to handle the exception. We need to add the `throws` keyword, and the name of the exception we want to handle.
+
+```java
+public void withdraw(Integer amountInCents) throws InsufficientFoundsException {
+    /* ... here stays the same code ... */
+}
+```
+
+Still, if you try to compile the code, you'll get an error, because we're not handling the exception in the method main of our application.
+
+
+
+
+```java
+
+
+
 

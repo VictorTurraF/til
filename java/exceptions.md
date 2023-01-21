@@ -141,9 +141,41 @@ Still, if you try to compile the code, you'll get an error, because we're not ha
 
 ![image](https://user-images.githubusercontent.com/59932737/213881460-52c0567c-d554-4cd9-9525-d7380af5ca53.png)
 
+Let's add a try/catch block to handle the exception.
+
+> The try/catch block is used to show how it works. In a real application, we would probably want to handle the exception in a more specific way, like calling the ui framework and showing a message in a popup to the user. In this example, we're just printing the exception message.
 
 ```java
+public class Main {
+    public static void main(String[] args) {
+        CheckingAccount checkingAccount = new CheckingAccount();
 
+        checkingAccount.deposit(10000);
 
+        try {
+            checkingAccount.withdraw(10004);
+        } catch (InsufficientFoundsException e) {
+            System.out.println(e.getMessage());
+        }
 
+        System.out.println("Your balance is: " + checkingAccount.balance);
+    }
+}
+```
 
+Output:
+
+```
+You have not enough founds. 
+Your balance is R$ 100,00 and you tried to withdraw R$ 100,04
+Your balance is: R$ 100,00
+
+Process finished with exit code 0
+```
+
+Note that the exception is handled in the try/catch block, and the program continues to run, in this case, showing the balance at the end.
+
+## References
+- [Exceptions in Java](https://www.geeksforgeeks.org/exceptions-in-java/);
+- [Checked vs Unchecked Exceptions in Java](https://www.geeksforgeeks.org/checked-vs-unchecked-exceptions-in-java/);
+- [Create a Custom Exception in Java](https://www.baeldung.com/java-new-custom-exception).

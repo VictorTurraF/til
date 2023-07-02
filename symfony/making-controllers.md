@@ -3,7 +3,7 @@
 Acording [the documentation](https://symfony.com/doc/current/controller.html#generating-controllers):
 
 Ensure that Symfony Maker is installed
-> I learned this in [Installing Maker](https://github.com/VictorTurraF/til/blob/70a775cea551b2ac969c1975aa61d056af6d04b0/symfony/installing-maker.md)
+> I learned this in [Installing Maker](https://github.com/VictorTurraF/til/blob/e012cfbfe41b053fb26e8e5170a3228df5068a09/symfony/installing-maker.md)
 
 To create with make, just run:
 ```bash
